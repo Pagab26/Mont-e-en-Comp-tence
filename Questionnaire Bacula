@@ -1,0 +1,96 @@
+BACULA
+
+
+Ou se trouve les fichiers/répertoires de configuration ? 
+
+-/etc/bacula/bacula-dir.conf
+-/etc/bacula/bacula-fd.conf
+-/etc/bacula/bacula-sd.conf
+
+Qu'est-ce qu'il est possible de paramétrer dans l'application ?
+-Ce dont on veut sauvegarder 
+-Mentionnez les machines sur lesquels faire des sauvegardes
+Qu'elles sont les paramètres importants pour réaliser le Tuning de l'application ?
+Disque Dur
+RAM
+A quoi ils servent ?
+Ils permettent de mieux sauvegarder
+Quels impacts ont- ils sur le fonctionnement de l'application ?
+
+Ou se trouve les logs de l'application ?
+var/spool/bacula/log
+
+Où se trouvent les données de l'application ?
+Les données se trouvent sur les périphériques de stockages définies dans les fichiers de configuration de bacula
+
+A quoi servent ces données ? 
+Les données représentent des informations qui sont donc essentielles
+
+ Sous quelle forme sont stockées les données ? fichiers de données type base de données/fichier plat au format  texte/tout dans un même fichier/réparti dans plusieurs fichiers/répertoires/etc.
+Sur des périphériques de stockage comme disque dur , clé USB
+
+o Existe-t-il des outils d'administration permettant de gérer l'application ?
+Outil webmin
+Comment fonctionnent-ils ?
++ Qu'est-ce qu'ils nous permettent de faire et de gérer ?
+De faire les sauvegardes sur les postes clients
+
+Sur quels ports écoutent l'application ?
+Port 8080 8081
+
+
+
+
+
+Supervision :
+
+o Qu'elles sont les services critiques qu'on doit superviser ?
+
+Statut
+Code de retour
+Description
+OK
+0
+Le service ne présente aucun problème
+WARNING
+1
+Le service a dépassé le seuil d’alerte
+CRITICAL
+2
+Le service a dépassé le seuil critique
+UNKNOWN
+3
+Le statut du service ne peut être vérifié (exemple : agent SNMP DOWN…)
+
+o Comment on le supervise (par SNMP/HTTP/JMX/SSH/etc.) ?
+Centreon supervise avec le protocoles SNMP(Simple Network Management Protocol)
+
+Quels sont les indicateurs pertinents qu'on doit intégrer à la métrologie ?
+MTBF (Mean Time Between Failure)
+Cet indicateur correspond à la Fiabilité : c’est le temps moyen entre la fin d’un incident et le début du suivant. Cet indicateur doit être le plus élevé possible.
+
+MTRS (Mean Time To Restore Service)
+Cet indicateur correspond à la Maintenabilité : c’est le temps moyen de rétablissement du service. Cet indicateur doit être le plus faible possible.
+
+MTTA (Mean Time To Acknowledge)
+Cet indicateur correspond à la Réactivité : c’est le temps moyen entre le début de l’incident et sa prise en compte par les équipes d’exploitation (état Acknowledge). Il est souvent utilisé pour mesurer la réactivité des équipes de support niveau 1, en particulier lorsque celles-ci sont externalisées.
+
+Sauvegarde :
+
+o Qu'est-ce qu'on sauvegarde ? 
+Les données indispensables et importantes
+Qu'est-ce qu'on exclue de la sauvegarde ?
+Les données non pertinentes , non essentielles
+
+o Comment on le sauvegarde (sauvegarde en mode fichier, via desscripts de dumps) ?
+Dumps
+
+logs :
+
+o Ou se trouvent les logs importants ?
+
+o Comment est gérée la rotation des logs ?
+La configuration est faite dans le fichier etc/logrotate.d/bacula
+
+o Sont-ils envoyés vers un serveur de logs ?
+Non
